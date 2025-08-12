@@ -37,7 +37,7 @@ function App() {
           <Route exact path='/technology' element={<News key='technology' setProgress={setProgress} category={'technology'} apiKey={myapiKey} />} />
 
           {/* This will handle all undefined routes (404) */}
-          <Route path="*" element={< NotFound />} />
+          <Route path="*" element={<NotFound />} />
 
         </Routes>
         <Footer />
