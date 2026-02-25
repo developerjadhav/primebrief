@@ -11,8 +11,7 @@ import NotFound from './components/NotFound';
 
 function App() {
 
-  // const myapiKey = process.env.REACT_APP_NEWS_API;
-  const myapiKey = "63b202172c007e81957432d49762daac";
+  const myapiKey = process.env.REACT_APP_NEWS_API;
   const [progress, setProgress] = useState(0);
 
   return (
