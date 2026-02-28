@@ -16,7 +16,10 @@ export default function News(props) {
     const updateNews = async () => {
         try {
             props.setProgress(10);
-            let url = `https://gnews.io/api/v4/top-headlines?country=in&category=${props.category}&apikey=${props.apiKey}`;
+            // let url = `https://gnews.io/api/v4/top-headlines?country=in&category=${props.category}&apikey=${props.apiKey}`;
+            
+            let url = `/.netlify/functions/proxyApi?category=${props.category}`;
+            
             setLoading(true);
             let data = await fetch(url);
             props.setProgress(50);
@@ -56,8 +59,8 @@ export default function News(props) {
             {/* for handling errors */}
             {!loading && articles.length === 0 && (
                 <>
-                <h3 className="text-center text-danger">No articles found. Try again later.</h3>
-                <h3 className="text-center text-danger">You have reached the maximum number of requests per day. Please try again tomorrow.</h3>
+                    <h3 className="text-center text-danger">No articles found. Try again later.</h3>
+                    <h3 className="text-center text-danger">You have reached the maximum number of requests per day. Please try again tomorrow.</h3>
                 </>
             )}
 
