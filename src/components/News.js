@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import FirstNews from './FirstNews';
 
 export default function News(props) {
-
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -16,10 +15,7 @@ export default function News(props) {
     const updateNews = async () => {
         try {
             props.setProgress(10);
-            // let url = `https://gnews.io/api/v4/top-headlines?country=in&category=${props.category}&apikey=${props.apiKey}`;
-            
             let url = `/.netlify/functions/proxyApi?category=${props.category}`;
-            
             setLoading(true);
             let data = await fetch(url);
             props.setProgress(50);
@@ -43,7 +39,6 @@ export default function News(props) {
         props.setProgress(100);
     }
 
-
     useEffect(() => {
         document.title = `PrimeBrief - ${capitalizeFirstLetter(props.category)} News`;
         updateNews();
@@ -55,7 +50,6 @@ export default function News(props) {
             <h1 className='text-center'>PrimeBrief - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
             {loading && <Spinner />}
 
-
             {/* for handling errors */}
             {!loading && articles.length === 0 && (
                 <>
@@ -64,15 +58,10 @@ export default function News(props) {
                 </>
             )}
 
-
-
             {/* FirstNews component starts */}
-
             {articles.length > 0 && <FirstNews title={articles[0].title} description={articles[0].description} imageUrl={articles[0].image} newsUrl={articles[0].url} date={articles[0].publishedAt} source={articles[0].source.name} />}
 
             {/* FirstNews component ends */}
-
-
             <div className='container'>
                 <div className='row' style={{ marginBottom: "80px" }}>
                     {articles.slice(1).map((e) => {
